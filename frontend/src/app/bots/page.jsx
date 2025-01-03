@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Check, ChevronsUpDown } from "lucide-react";
 
 import { cn } from "@/lib/utils";
@@ -18,6 +18,17 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { Input } from "@/components/ui/input";
+import { useFetchData } from "@/hooks/useFetchData";
+
+// import {
+//   setUniversities,
+//   setCourses,
+//   setSemesters,
+//   setSubjects,
+//   setBot,
+// } from "../../redux/features/selectbotSlice";
+
+// import { useSelector, useDispatch } from "react-redux";
 
 const frameworks = [
   {
@@ -43,12 +54,19 @@ const frameworks = [
 ];
 
 function page() {
+  const { loading, data } = useFetchData();
+  useEffect(() => {
+    console.log(data);
+  }, [data]);
   const [openUniv, setOpenUniv] = useState(false);
   const [valueUniv, setValueUniv] = useState("");
   const [openSem, setOpenSem] = useState(false);
   const [valueSem, setValueSem] = useState("");
   const [openSubj, setOpenSubj] = useState(false);
   const [valueSubj, setValueSubj] = useState("");
+
+  useEffect(() => {}, []);
+
   return (
     <div className="h-screen w-full flex items-center justify-center">
       <div className="w-[20%] h-full bg-slate-600 flex flex-col p-2">

@@ -7,7 +7,7 @@ import { createRetrievalChain } from "langchain/chains/retrieval";
 
 configDotenv();
 
-const loader = new PDFLoader("./resources/srwc.pdf");
+const loader = new PDFLoader("../resources/srwc.pdf");
 const docs = await loader.load();
 
 const embeddings = new MistralAIEmbeddings({
@@ -40,6 +40,5 @@ const retrieverChain = await createRetrievalChain({
 export const srwcController = async (req, res) => {
   const { prompt } = req.body;
   const response = await retrieverChain.invoke({ input: prompt });
-  console.log(response);
   res.send(response.answer.content);
 };
